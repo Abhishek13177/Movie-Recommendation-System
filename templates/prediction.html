@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Recommendation system</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+      .btn{
+        position:relative; 
+        margin-left:15rem; 
+        color:black; 
+        border-color:white ; 
+        padding-left: 5rem;
+        padding-right: 5rem;
+      }
+      button{
+        background-color:white;
+      }
+      .btn:hover
+      {
+        background-color: rgba(255, 0, 0, 0.516);
+      }
+    </style>
+   </head>
+  <body class="bg-gray-300" style=" background-image: url(/static/2.jpg); background-repeat:no-repeat;background-size: cover;" >
+    <header class="text-gray-600 body-font -my-8">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-badge-4k" viewBox="0 0 16 16">
+              <path d="M4.807 5.001C4.021 6.298 3.203 7.6 2.5 8.917v.971h2.905V11h1.112V9.888h.733V8.93h-.733V5.001zm-1.23 3.93v-.032a47 47 0 0 1 1.766-3.001h.062V8.93zm9.831-3.93h-1.306L9.835 7.687h-.057V5H8.59v6h1.187V9.075l.615-.699L12.072 11H13.5l-2.232-3.415z"/>
+              <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+            </svg>
+            <a href="/recommendation" class="href">  <span class="ml-3 text-xl">Cinematrix</span>
+            </a>
+          </a>
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a href="/" class="mr-5 hover:text-gray-900">Home</a>
+            <a href="/about" class="mr-5 hover:text-gray-900">About</a>
+            <a href="/recommendation" class="mr-5 hover:text-gray-900">Recommendation</a>
+          </nav>
+
+        </div>
+      </header>
+
+      <section class="text-gray-600 body-font -my-8">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Movie Recommendation system</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Dive into the World of Movies</p>
+
+            <br/>
+            <p class="text-primary"><b>{{error}}</b></p>
+          </div>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="center col-md-6">
+                <form action="/recommendation" method="POST">
+                    <select class="form-select" id="movies" name="movies" aria-label="Default select example">
+                      {% for j in movies_list %}  
+                      <option value="{{j}}">{{j}}</option>
+                     {% endfor %}
+                      </select>
+                      <br/>
+                  <div class="flex justify-center mx-auto">
+                  <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-20 focus:outline-none hover:bg-red-400 rounded text-lg">Submit</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {% if status == True %}
+      <section class="text-gray-600 body-font " style="margin-top: -175px;">
+        <div class="container px-5 py-24 mx-auto">
+            <h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Here are some recommendations:</h2>
+            <div class="flex flex-wrap -m-4">
+            <div class="xl:w-1/4 md:w-1/2 p-3">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[0]}}" alt="content">
+                <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Movie Name</h3>
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[0]}}</h2>
+              </div>
+            </div>
+            <div class="xl:w-1/4 md:w-1/2 p-3">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[1]}}" alt="content">
+                <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Movie Name</h3>
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[1]}}</h2>
+              </div>
+            </div>
+            <div class="xl:w-1/4 md:w-1/2 p-3">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[2]}}" alt="content">
+                <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Movie Name</h3>
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[2]}}</h2>
+              </div>
+            </div>
+            <div class="xl:w-1/4 md:w-1/2 p-3">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[3]}}" alt="content">
+                <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Movie Name</h3>
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[3]}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

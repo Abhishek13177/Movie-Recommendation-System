@@ -1,4 +1,4 @@
-###This project uses content based filtering , we fetch movies from dataset and it also uses TMDB API to fetch poster of those movies.
+##This project uses content based filtering , we fetch movies from dataset and it also uses TMDB API to fetch poster of those movies.
 
 This project showcases a content-based movie recommendation system, leveraging natural language processing and machine learning techniques. The system offers personalized movie suggestions based on various factors such as movie descriptions, genres, keywords, cast, and crew.
 
